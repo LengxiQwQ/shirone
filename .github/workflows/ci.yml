@@ -54,8 +54,18 @@ jobs:
       CI: true
 
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: site
+
+      - name: Checkout content repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: LengxiQwQ/lengxiqwq-site-content
+          path: lengxiqwq-site-content
+          token: ${{ secrets.CONTENT_REPO_TOKEN }}
+          persist-credentials: false
 
       - name: Set up pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -68,18 +78,30 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          cache-dependency-path: site/pnpm-lock.yaml
 
       - name: Install dependencies
+        working-directory: site
         run: pnpm install --frozen-lockfile
 
+      - name: Sync content
+        working-directory: site
+        env:
+          CONTENT_DIR: ${{ github.workspace }}/lengxiqwq-site-content
+        run: |
+          pnpm content:sync
+          node scripts/icons/generate-local-icons.mjs
+
       - name: Check Astro diagnostics
+        working-directory: site
         run: pnpm exec astro check
 
       - name: Validate atom manifest
+        working-directory: site
         run: pnpm check:manifest
 
       - name: Run unit tests
+        working-directory: site
         run: node --test "tests/**/*.test.mjs"
 
   build:
@@ -94,8 +116,18 @@ jobs:
       CI: true
 
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: site
+
+      - name: Checkout content repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: LengxiQwQ/lengxiqwq-site-content
+          path: lengxiqwq-site-content
+          token: ${{ secrets.CONTENT_REPO_TOKEN }}
+          persist-credentials: false
 
       - name: Set up pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -108,10 +140,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          cache-dependency-path: site/pnpm-lock.yaml
 
       - name: Install dependencies
+        working-directory: site
         run: pnpm install --frozen-lockfile
 
       - name: Build production site
+        working-directory: site
+        env:
+          CONTENT_DIR: ${{ github.workspace }}/lengxiqwq-site-content
         run: pnpm build
