@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "type": "path",
+    "path": "../lengxiqwq-site-content"
+  },
+  "keep": [
+    "public/assets/audio/**"
+  ]
+}
