@@ -1,4 +1,4 @@
-﻿name: Deploy
+name: Deploy
 
 on:
   push:
@@ -27,7 +27,7 @@ permissions:
   id-token: write
 
 env:
-  CONTENT_REPOSITORY: LengxiQwQ/lengxiqwq-site-content
+  CONTENT_REPOSITORY: LengxiQwQ/shirone-content
   CONTENT_WORKING_COPY: .content-src
 
 jobs:
