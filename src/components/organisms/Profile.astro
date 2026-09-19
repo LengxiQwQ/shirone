@@ -79,7 +79,6 @@ if (typeof avatarAsset !== "string") {
     </a>
     <div class="m3-profile__info px-2">
         <div class="m3-profile__name">{config.name}</div>
-        <div class="m3-profile__accent"></div>
         <div class="m3-profile__bio">{config.bio}</div>
         <div class="m3-profile__links flex flex-wrap gap-2 justify-center mb-1">
             {config.links.length > 1 && config.links.map(item =>
@@ -153,19 +152,11 @@ if (typeof avatarAsset !== "string") {
 		color: var(--on-surface)
 		transition: color var(--m3e-duration-short) var(--m3e-easing-standard)
 
-	&__accent
-		width: 1.25rem
-		height: 0.25rem
-		background: var(--primary)
-		border-radius: var(--shape-corner-full)
-		margin: 0 auto var(--m3e-space-2)
-		transition: background-color var(--m3e-duration-short) var(--m3e-easing-standard)
-
 	&__bio
 		font: var(--m3e-type-body-medium)
 		color: var(--on-surface-variant)
 		text-align: center
-		margin: 0 0 var(--m3e-space-3)
+		margin: var(--m3e-space-1) 0 var(--m3e-space-3)
 		line-height: 1.5
 		transition: color var(--m3e-duration-short) var(--m3e-easing-standard)
 </style>

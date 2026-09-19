@@ -97,24 +97,26 @@ const styleVars = [
 
 <style lang="stylus">
 .m3-card
-    --m3-card-bg: var(--surface-container-highest)
+    --m3-card-bg: var(--card-bg, var(--surface-container-highest))
     display: block
     box-sizing: border-box
-    border-radius: var(--m3-card-radius, var(--shape-corner-m))
+    border-radius: var(--m3-card-radius, var(--shape-corner-l))
     background: var(--m3-card-bg)
     color: var(--on-surface)
-    /* 形状圆角跟随变体一致，内容溢出圆角裁剪 */
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.05))
+    box-shadow: var(--card-shadow, none)
+    backdrop-filter: var(--card-backdrop-filter, none)
+    -webkit-backdrop-filter: var(--card-backdrop-filter, none)
     overflow: hidden
     transition:
+        transform var(--m3e-duration-short) var(--m3e-easing-standard),
         box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
         border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
         background-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate)
 
-    /* 可点击卡片（button/a 语义）：hover/pressed 加 on-surface overlay + focus ring；
-       button 默认 padding 由 Tailwind preflight 归零，外部 p-* 类可正常生效 */
+    /* 可点击卡片（button/a 语义）：hover/pressed 加 on-surface overlay + focus ring */
     &--interactive
         appearance: none
-        border: 0
         width: 100%
         text-align: inherit
         font: inherit
@@ -122,24 +124,26 @@ const styleVars = [
         text-decoration: none
         color: inherit
         &:hover
-            background: unquote("color-mix(in oklab, var(--on-surface) 4%, var(--m3-card-bg))")
+            transform: translateY(-2px)
+            background: var(--card-bg-hover, unquote("color-mix(in oklab, var(--on-surface) 4%, var(--m3-card-bg))"))
+            border-color: var(--card-border-hover, var(--outline))
+            box-shadow: var(--card-shadow-hover, var(--m3e-elevation-2))
         &:active
+            transform: translateY(0)
             background: unquote("color-mix(in oklab, var(--on-surface) 8%, var(--m3-card-bg))")
         &:focus-visible
             outline: 2px solid var(--primary)
             outline-offset: 2px
 
     &--elevated
-        --m3-card-bg: var(--surface-container-low)
-        box-shadow: var(--m3e-elevation-1)
+        box-shadow: var(--card-shadow, var(--m3e-elevation-1))
         &:hover
-            box-shadow: var(--m3e-elevation-2)
+            box-shadow: var(--card-shadow-hover, var(--m3e-elevation-2))
 
     &--outlined
-        --m3-card-bg: var(--surface)
-        border: 1px solid var(--outline-variant)
+        border: 1px solid var(--card-border, var(--outline-variant))
         &:hover
-            border-color: var(--outline)
+            border-color: var(--card-border-hover, var(--outline))
 
     &--disabled
         cursor: default

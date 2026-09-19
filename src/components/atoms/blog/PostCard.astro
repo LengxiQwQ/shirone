@@ -1,5 +1,4 @@
 ---
-import AccentBar from "@components/atoms/display/AccentBar.svelte";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 /**
@@ -81,7 +80,6 @@ const titleLabel =
 			href={href}
 			aria-label={titleLabel}
 		>
-			<AccentBar size="medium" />
 			{pinned && (
 				<span
 					class:list={[
@@ -146,10 +144,6 @@ const titleLabel =
 					onerror="this.parentElement?.previousElementSibling?.classList.add('m3-blog-postcard__cover-loading--done')"
 				/>
 			</picture>
-			<span class="m3-blog-postcard__cover-mask" aria-hidden="true"></span>
-			<span class="m3-blog-postcard__cover-arrow" aria-hidden="true">
-				<Icon name="material-symbols:chevron-right-rounded" />
-			</span>
 		</a>
 	) : (
 		<a class="m3-blog-postcard__enter" href={href} aria-label={title}>
@@ -169,9 +163,23 @@ const titleLabel =
 	width: 100%
 	overflow: hidden
 	border-radius: var(--shape-corner-l)
-	/* 站点卡片色（浅色 = surface-container-lowest 近白），与侧栏等其它卡片一致 */
 	background: var(--card-bg)
 	color: var(--on-surface)
+	border: 1px solid var(--card-border, rgba(0, 0, 0, 0.06))
+	box-shadow: var(--card-shadow, none)
+	backdrop-filter: var(--card-backdrop-filter, none)
+	-webkit-backdrop-filter: var(--card-backdrop-filter, none)
+	transition:
+		transform var(--m3e-duration-short) var(--m3e-easing-standard),
+		box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
+		border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
+		background-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate)
+
+	&:hover
+		transform: translateY(-2px)
+		background: var(--card-bg-hover, var(--card-bg))
+		border-color: var(--card-border-hover, transparent)
+		box-shadow: var(--card-shadow-hover, none)
 
 	&__body
 		flex: 1
@@ -303,6 +311,9 @@ const titleLabel =
 		> picture > img
 			object-fit: cover
 			position: relative
+			transition: transform var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate)
+		.m3-blog-postcard:hover & > picture > img
+			transform: scale(1.04)
 
 		@media (min-width: bp-md)
 			position: absolute
@@ -313,40 +324,6 @@ const titleLabel =
 			height: auto
 			border-radius: var(--shape-corner-s)
 			overflow: hidden
-
-	/* 封面触摸箭头：卡片 hover 时深色遮罩 + 白色大箭头（与原版封面一致） */
-	&__cover-mask
-		position: absolute
-		inset: 0
-		/* 触摸箭头（原版）：默认隐藏，hover/触摸时深色遮罩 + 白色大箭头 */
-		background: transparent
-		transition: background-color var(--m3e-duration-medium) var(--m3e-easing-standard)
-		/* 移动端不显示（触摸触发的瞬时 hover 也不出现，对齐原版） */
-		@media (max-width: bp-md - 1px)
-			display: none
-		.m3-blog-postcard:hover &
-			background: unquote("color-mix(in srgb, #000 30%, transparent)")
-
-	&__cover-arrow
-		position: absolute
-		inset: 0
-		display: flex
-		align-items: center
-		justify-content: center
-		opacity: 0
-		transform: scale(0.5)
-		@media (max-width: bp-md - 1px)
-			display: none
-		transition:
-			opacity var(--m3e-duration-medium) var(--m3e-easing-standard),
-			transform var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate)
-		> :global(svg)
-			width: 3rem
-			height: 3rem
-			color: #fff
-		.m3-blog-postcard:hover &
-			opacity: 1
-			transform: scale(1)
 
 	&__enter
 		position: absolute

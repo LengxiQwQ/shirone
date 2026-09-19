@@ -164,12 +164,24 @@ define({
   --shape-corner-full: 999px
   --radius-large: var(--shape-corner-l)
   --page-bg: var(--surface-container-low)
-  --card-bg: var(--surface-container-lowest)
-  --float-panel-bg: var(--surface-container)
+  --card-bg: rgba(255, 255, 255, 0.88)
+  --card-bg-hover: rgba(255, 255, 255, 0.96)
+  --card-border: rgba(0, 0, 0, 0.06)
+  --card-border-hover: rgba(0, 0, 0, 0.12)
+  --card-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05)
+  --card-shadow-hover: 0 10px 28px -6px rgba(0, 0, 0, 0.1)
+  --card-backdrop-filter: blur(16px)
+  --float-panel-bg: rgba(255, 255, 255, 0.92)
 :root.dark
   --page-bg: var(--surface)
-  --card-bg: var(--surface-container-high)
-  --float-panel-bg: var(--surface-container)
+  --card-bg: rgba(24, 24, 29, 0.82)
+  --card-bg-hover: rgba(30, 30, 36, 0.92)
+  --card-border: rgba(255, 255, 255, 0.08)
+  --card-border-hover: rgba(255, 255, 255, 0.18)
+  --card-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.35)
+  --card-shadow-hover: 0 10px 28px -6px rgba(0, 0, 0, 0.5)
+  --card-backdrop-filter: blur(20px)
+  --float-panel-bg: rgba(24, 24, 29, 0.92)
 
 /* ============================================================
    M3E 响应式 / 间距 / 密度令牌

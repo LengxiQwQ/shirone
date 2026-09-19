@@ -119,24 +119,34 @@ const {
       --m3e-state-color: var(--on-secondary-container)
       border-color: transparent
 
-  /* 站内风格：无边框 + surface-container 层叠，等价旧 .btn-regular 药丸；
+  /* 站内风格：微边框 + surface-container 层叠，等价旧 .btn-regular 药丸；
      选中态 primary 实底 + on-primary（导航栏高亮语义） */
   &--tonal
-    border: none
+    border: 1px solid var(--card-border)
     border-radius: var(--shape-corner-full)
-    padding: 0 0.75rem
+    padding: 0 0.875rem
     font: var(--m3e-type-label-large)
     background: var(--btn-regular-bg)
     color: var(--btn-content)
     --m3e-state-color: var(--on-surface-variant)
+    transition:
+      background-color var(--m3e-duration-short) var(--m3e-easing-standard),
+      color var(--m3e-duration-short) var(--m3e-easing-standard),
+      border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+      transform var(--m3e-duration-short) var(--m3e-easing-standard),
+      box-shadow var(--m3e-duration-short) var(--m3e-easing-standard)
     &:hover
       background: var(--btn-regular-bg-hover)
+      border-color: unquote("color-mix(in srgb, var(--primary) 30%, var(--card-border))")
+      transform: translateY(-1px)
     &:active
       background: var(--btn-regular-bg-active)
+      transform: translateY(0)
 
     &.m3-chip--soft
       background: var(--primary-container)
       color: var(--on-primary-container)
+      border-color: unquote("color-mix(in srgb, var(--primary) 20%, transparent)")
       --m3e-state-color: var(--on-primary-container)
       font-weight: 600
       &:hover
@@ -145,7 +155,9 @@ const {
     &.m3-chip--selected
       background: var(--primary)
       color: var(--on-primary)
+      border-color: var(--primary)
       --m3e-state-color: var(--on-primary)
+      box-shadow: 0 2px 8px unquote("color-mix(in srgb, var(--primary) 30%, transparent)")
       &:hover
         background: var(--primary)
 </style>

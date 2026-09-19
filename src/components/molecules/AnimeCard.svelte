@@ -135,14 +135,17 @@ const metaLine = $derived(
 	overflow: hidden
 	border-radius: var(--shape-corner-l)
 	background: var(--card-bg)
-	border: 1px solid var(--outline-variant)
+	border: 1px solid var(--card-border)
+	box-shadow: var(--card-shadow)
+	backdrop-filter: var(--card-backdrop-filter)
+	-webkit-backdrop-filter: var(--card-backdrop-filter)
 	transition:
-		border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		transform var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate)
+		border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+		box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
+		transform var(--m3e-duration-short) var(--m3e-easing-standard)
 	&:hover
-		border-color: var(--outline)
-		box-shadow: var(--m3e-elevation-2)
+		border-color: var(--card-border-hover)
+		box-shadow: var(--card-shadow-hover)
 		transform: translateY(-2px)
 
 	/* 2:3 海报封面：渐变占位同时充当图片加载背景 */

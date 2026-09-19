@@ -117,7 +117,10 @@ const timeText = $derived(formatDateToYYYYMMDDHHmm(publishedAt));
 	padding: var(--m3e-space-4) var(--m3e-space-5)
 	border-radius: var(--shape-corner-l)
 	background: var(--card-bg)
-	border: 1px solid var(--outline-variant)
+	border: 1px solid var(--card-border)
+	box-shadow: var(--card-shadow)
+	backdrop-filter: var(--card-backdrop-filter)
+	-webkit-backdrop-filter: var(--card-backdrop-filter)
 	color: var(--on-surface)
 
 	&__header

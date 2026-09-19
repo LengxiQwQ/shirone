@@ -93,11 +93,15 @@
   }
 
   blockquote {
-    @apply not-italic border-transparent relative;
+    @apply not-italic relative;
     font-weight: inherit;
+    padding: var(--m3e-space-3) var(--m3e-space-4);
+    background: color-mix(in srgb, var(--primary) 4%, transparent);
+    border-radius: var(--shape-corner-m);
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, transparent);
 
     &:before {
-      @apply content-[''] absolute -left-1 block transition bg-[var(--primary)] h-full w-1 rounded-full;
+      @apply content-[''] absolute left-0 top-3 bottom-3 block transition bg-[var(--primary)] w-1 rounded-full;
     }
 
     /* Remove the double quotes from default styles */

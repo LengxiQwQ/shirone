@@ -47,6 +47,9 @@
        macOS 默认使用覆盖式滚动条，本来就不影响布局宽度。 */
     html {
         scrollbar-gutter: stable;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
     }
 
     /* 全局正文色走主题变量：裸内容（未显式设色的文字/按钮）明暗自适应，

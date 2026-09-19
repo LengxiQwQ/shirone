@@ -90,6 +90,10 @@ const umamiOptions = resolveUmamiOptions(umamiConfig);
 
 const hasDesktopBanner = hasBannerImages(siteConfig.banner.src.desktop);
 const hasMobileBanner = hasBannerImages(siteConfig.banner.src.mobile);
+const isHomePage = initialPage === "home";
+const ssrBannerVisible =
+	defaultWallpaperMode === "banner" &&
+	(hasDesktopBanner || (hasMobileBanner && isHomePage));
 
 let pageTitle: string;
 if (title) {
@@ -223,12 +227,26 @@ const hasMonoFont =
 	<body
 		class="min-h-screen transition"
 		data-current-page={initialPage}
-		data-banner-visible="false"
-		data-banner-layout="compact"
-		data-banner-top-app-bar="false"
+		data-banner-visible={String(ssrBannerVisible)}
+		data-banner-layout={ssrBannerVisible ? "banner" : "compact"}
+		data-banner-top-app-bar={String(ssrBannerVisible)}
 		data-banner-has-desktop={String(hasDesktopBanner)}
 		data-banner-has-mobile={String(hasMobileBanner)}
 	>
+		<script is:inline>
+			(function () {
+				const wm = document.documentElement.dataset.wallpaperMode;
+				const isScrolled = (window.scrollY || document.documentElement.scrollTop || 0) > 64;
+				if (wm === 'none' || isScrolled) {
+					document.body.dataset.bannerScrolled = 'true';
+					if (wm === 'none') {
+						document.body.dataset.bannerVisible = 'false';
+						document.body.dataset.bannerLayout = 'compact';
+						document.body.dataset.bannerTopAppBar = 'false';
+					}
+				}
+			})();
+		</script>
 		<ConfigCarrier></ConfigCarrier>
 		{umamiOptions && <UmamiRuntime />}
 		{textureEnabled && (
@@ -357,11 +375,13 @@ function scrollFunction() {
 	const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
 	const backToTopThreshold = window.innerHeight * (BANNER_HEIGHT / 100);
 	backToTopBtn?.classList.toggle('hide', scrollTop <= backToTopThreshold);
-	const bannerVisible = document.body.dataset.bannerVisible === 'true';
+	const isWallpaperBanner = document.documentElement.dataset.wallpaperMode === 'banner';
+	const bannerVisible = isWallpaperBanner && document.body.dataset.bannerVisible === 'true';
 	const navbar = document.getElementById('navbar');
 	const bannerStage = document.getElementById('banner-wrapper');
 	const bannerBottom = bannerStage?.getBoundingClientRect().height ?? 0;
-	const overBanner = bannerVisible && scrollTop < Math.max(0, bannerBottom - 64);
+	const threshold = bannerBottom > 64 ? bannerBottom - 64 : (window.innerHeight * 0.4);
+	const overBanner = bannerVisible && (scrollTop < threshold);
 	document.body.dataset.bannerScrolled = String(!overBanner);
 	navbar?.classList.toggle('top-app-bar--transparent', overBanner);
 	navbar?.classList.toggle('top-app-bar--scrolled', scrollTop > 16);

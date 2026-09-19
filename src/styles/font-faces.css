@@ -1,9 +1,11 @@
 /* Font roles are set by the build-time manifest in Layout.astro. */
 :root {
-    --font-body-fallback: ui-sans-serif, system-ui, sans-serif;
-    --font-cjk-fallback: system-ui, sans-serif;
-    --m3e-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --m3e-font-sans: var(--font-body), var(--font-cjk), var(--font-body-fallback), "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+    --font-body-fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-cjk-fallback: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", system-ui, sans-serif;
+    --m3e-font-mono-fallback: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-body: var(--font-body-fallback);
+    --font-cjk: var(--font-cjk-fallback);
+    --m3e-font-sans: var(--font-body, var(--font-body-fallback)), var(--font-cjk, var(--font-cjk-fallback)), var(--font-body-fallback), var(--font-cjk-fallback), "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
     --font-sans: var(--m3e-font-sans);
     /* Astro Fonts owns --font-mono when a custom mono role is enabled. Keep a
        one-way alias here so the system-font fallback cannot form a cycle. */

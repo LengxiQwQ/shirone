@@ -82,19 +82,24 @@ const host = $derived.by(() => {
 .compass-tile
 	box-sizing: border-box
 	background: var(--card-bg)
-	border: 1px solid var(--outline-variant)
+	border: 1px solid var(--card-border)
 	border-radius: var(--shape-corner-l)
+	box-shadow: var(--card-shadow)
+	backdrop-filter: var(--card-backdrop-filter)
+	-webkit-backdrop-filter: var(--card-backdrop-filter)
 	padding: var(--m3e-space-3) var(--m3e-space-4)
 	--m3e-state-color: var(--on-surface)
 	transition:
-		border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		background-color var(--m3e-duration-medium) var(--m3e-easing-standard)
+		border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+		box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
+		transform var(--m3e-duration-short) var(--m3e-easing-standard),
+		background-color var(--m3e-duration-short) var(--m3e-easing-standard)
 
 	&:hover
-		border-color: var(--outline)
-		box-shadow: var(--m3e-elevation-1)
-		background: unquote("color-mix(in oklab, var(--on-surface) 3%, var(--card-bg))")
+		border-color: var(--card-border-hover)
+		box-shadow: var(--card-shadow-hover)
+		transform: translateY(-2px)
+		background: var(--card-bg-hover)
 
 	&__link
 		display: flex

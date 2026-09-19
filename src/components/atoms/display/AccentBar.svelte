@@ -38,15 +38,18 @@ const style = [
 .m3-accent-bar
 	display: inline-block
 	flex-shrink: 0
-	width: 0.25rem
-	height: 1.25rem
-	border-radius: var(--m3e-accent-bar-radius, 0.375rem)
+	width: 0.1875rem
+	height: 1rem
+	border-radius: var(--shape-corner-full)
 	background: var(--m3e-accent-bar-color, var(--primary))
 	vertical-align: middle
+	opacity: 0.9
 
 	&--small
-		height: 1rem
+		width: 0.1875rem
+		height: 0.875rem
 
 	&--large
-		height: 1.5rem
+		width: 0.25rem
+		height: 1.375rem
 </style>

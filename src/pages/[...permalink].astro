@@ -2,7 +2,6 @@
 import { type CollectionEntry, render } from "astro:content";
 import path from "node:path";
 import IconButton from "@components/atoms/action/IconButton.svelte";
-import AccentBar from "@components/atoms/display/AccentBar.svelte";
 import Card from "@components/atoms/display/Card.svelte";
 import Markdown from "@components/content/Markdown.astro";
 import ImageWrapper from "@components/molecules/ImageWrapper.astro";
@@ -248,8 +247,7 @@ const jsonLd = {
 					text-[var(--on-surface)]
 					flex items-center gap-3"
 				>
-					<AccentBar size="large" />
-					<div class="inline-block">
+					<div class="inline-block flex-1 min-w-0">
 						{entry.data.title}
 					</div>
 					<IconButton

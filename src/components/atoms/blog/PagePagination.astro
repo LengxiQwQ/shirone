@@ -190,19 +190,28 @@ const pageLabel = (p: number) => labels.page.replace("{page}", String(p));
 		justify-content: center
 		width: 2.5rem
 		height: 2.5rem
+		border: 1px solid var(--card-border)
 		border-radius: var(--shape-corner-m)
-		background: var(--surface-container-low)
+		background: var(--card-bg)
+		box-shadow: var(--card-shadow)
+		backdrop-filter: var(--card-backdrop-filter)
+		-webkit-backdrop-filter: var(--card-backdrop-filter)
 		color: var(--primary)
 		text-decoration: none
 		--m3e-state-color: var(--primary)
 		transition:
-			background-color var(--m3e-duration-short) var(--m3e-easing-standard),
+			background var(--m3e-duration-short) var(--m3e-easing-standard),
+			border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+			box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
 			transform var(--m3e-duration-short) var(--m3e-easing-standard)
 		> :global(svg)
 			width: 1.5rem
 			height: 1.5rem
 		&:hover:not(.m3-blog-pagination__arrow--disabled)
-			background: var(--surface-container-high)
+			background: var(--card-bg-hover)
+			border-color: unquote("color-mix(in srgb, var(--primary) 35%, var(--card-border))")
+			box-shadow: var(--card-shadow-hover)
+			transform: translateY(-2px)
 
 		&--disabled
 			opacity: 0.38
@@ -217,18 +226,26 @@ const pageLabel = (p: number) => labels.page.replace("{page}", String(p));
 		min-width: 5rem
 		height: 2.5rem
 		padding: 0 var(--m3e-space-3)
-		border: none
+		border: 1px solid var(--card-border)
 		border-radius: var(--shape-corner-m)
-		background: var(--surface-container-low)
+		background: var(--card-bg)
+		box-shadow: var(--card-shadow)
+		backdrop-filter: var(--card-backdrop-filter)
+		-webkit-backdrop-filter: var(--card-backdrop-filter)
 		color: var(--on-surface)
 		font: var(--m3e-type-label-large)
 		--m3e-state-color: var(--on-surface)
 		cursor: pointer
 		transition:
-			background-color var(--m3e-duration-short) var(--m3e-easing-standard),
+			background var(--m3e-duration-short) var(--m3e-easing-standard),
+			border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+			box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
 			transform var(--m3e-duration-short) var(--m3e-easing-standard)
 		&:hover
-			background: var(--surface-container-high)
+			background: var(--card-bg-hover)
+			border-color: unquote("color-mix(in srgb, var(--primary) 35%, var(--card-border))")
+			box-shadow: var(--card-shadow-hover)
+			transform: translateY(-2px)
 
 		&-current
 			font-weight: 700
@@ -246,16 +263,18 @@ const pageLabel = (p: number) => labels.page.replace("{page}", String(p));
 		width: 5rem
 		height: 2.5rem
 		padding: 0 var(--m3e-space-2)
-		border: none
+		border: 1px solid var(--primary)
 		border-radius: var(--shape-corner-m)
-		background: var(--surface-container-low)
+		background: var(--card-bg)
+		box-shadow: 0 0 0 2px unquote("color-mix(in srgb, var(--primary) 25%, transparent)")
+		backdrop-filter: var(--card-backdrop-filter)
+		-webkit-backdrop-filter: var(--card-backdrop-filter)
 		color: var(--on-surface)
 		font: var(--m3e-type-label-large)
 		font-weight: 700
 		text-align: center
 		font-variant-numeric: tabular-nums
-		outline: 2px solid var(--primary)
-		outline-offset: -2px
+		outline: none
 
 	&__nums
 		display: flex
@@ -268,25 +287,41 @@ const pageLabel = (p: number) => labels.page.replace("{page}", String(p));
 		justify-content: center
 		width: 2.5rem
 		height: 2.5rem
+		border: 1px solid var(--card-border)
 		border-radius: var(--shape-corner-m)
-		background: var(--surface-container-low)
+		background: var(--card-bg)
+		box-shadow: var(--card-shadow)
+		backdrop-filter: var(--card-backdrop-filter)
+		-webkit-backdrop-filter: var(--card-backdrop-filter)
 		font: var(--m3e-type-label-large)
 		font-weight: 700
 		text-decoration: none
 		color: var(--on-surface-variant)
 		--m3e-state-color: var(--on-surface)
 		transition:
-			background-color var(--m3e-duration-short) var(--m3e-easing-standard),
-			color var(--m3e-duration-short) var(--m3e-easing-standard)
+			background var(--m3e-duration-short) var(--m3e-easing-standard),
+			border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+			color var(--m3e-duration-short) var(--m3e-easing-standard),
+			box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
+			transform var(--m3e-duration-short) var(--m3e-easing-standard)
 		&:hover
-			background: var(--surface-container-high)
+			background: var(--card-bg-hover)
+			border-color: unquote("color-mix(in srgb, var(--primary) 35%, var(--card-border))")
+			box-shadow: var(--card-shadow-hover)
+			color: var(--primary)
+			transform: translateY(-2px)
 
 		&--active
 			background: var(--primary)
+			border-color: var(--primary)
 			color: var(--on-primary)
+			box-shadow: 0 4px 12px unquote("color-mix(in srgb, var(--primary) 30%, transparent)")
 			--m3e-state-color: var(--on-primary)
 			&:hover
 				background: var(--primary)
+				border-color: var(--primary)
+				color: var(--on-primary)
+				transform: translateY(-2px)
 
 	&__ellipsis
 		display: inline-flex

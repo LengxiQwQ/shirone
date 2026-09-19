@@ -137,23 +137,26 @@ const showImage = $derived(Boolean(device.image) && !coverFailed);
 	flex-direction: column
 	overflow: hidden
 	background: var(--card-bg)
-	border: 1px solid var(--outline-variant)
+	border: 1px solid var(--card-border)
 	border-radius: var(--shape-corner-l)
+	box-shadow: var(--card-shadow)
+	backdrop-filter: var(--card-backdrop-filter)
+	-webkit-backdrop-filter: var(--card-backdrop-filter)
 	transition:
-		border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		transform var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		background-color var(--m3e-duration-medium) var(--m3e-easing-standard)
+		border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+		box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
+		transform var(--m3e-duration-short) var(--m3e-easing-standard),
+		background-color var(--m3e-duration-short) var(--m3e-easing-standard)
 
 	&:hover
-		border-color: var(--outline)
-		box-shadow: var(--m3e-elevation-2)
+		border-color: var(--card-border-hover)
+		box-shadow: var(--card-shadow-hover)
 		transform: translateY(-2px)
-		background: unquote("color-mix(in oklab, var(--on-surface) 2%, var(--card-bg))")
+		background: var(--card-bg-hover)
 
 	/* 主力推荐特色高亮：边框微光 */
 	&--featured
-		border-color: unquote("color-mix(in oklab, var(--primary) 38%, var(--outline-variant))")
+		border-color: unquote("color-mix(in oklab, var(--primary) 45%, var(--card-border))")
 		&:hover
 			border-color: var(--primary)
 

@@ -17,10 +17,13 @@
 
 .expressive-code .frame {
 	--code-action-top: var(--m3e-space-3);
-	--code-control-bg: var(--surface-container-high);
-	--code-control-bg-hover: var(--surface-container-highest);
-	--code-control-border: var(--outline-variant);
-	--code-control-color: var(--on-surface);
+	--code-control-bg: var(--card-bg);
+	--code-control-bg-hover: var(--card-bg-hover);
+	--code-control-border: var(--card-border);
+	--code-control-color: var(--on-surface-variant);
+	border: 1px solid var(--card-border);
+	border-radius: var(--shape-corner-m);
+	overflow: hidden;
 }
 
 .expressive-code .frame pre[data-language]::before {

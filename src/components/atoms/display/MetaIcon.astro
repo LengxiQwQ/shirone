@@ -24,16 +24,15 @@ const { icon, class: className, style } = Astro.props;
 
 <style lang="stylus">
 .m3-meta-icon
-	display: flex
+	display: inline-flex
 	align-items: center
 	justify-content: center
-	width: 2rem
-	height: 2rem
-	border-radius: var(--shape-corner-s)
-	background: var(--btn-regular-bg)
-	color: var(--btn-content)
+	width: 1.25rem
+	height: 1.25rem
+	color: var(--on-surface-variant)
 	flex-shrink: 0
+	transition: color var(--m3e-duration-short) var(--m3e-easing-standard)
 	> :global(svg)
-		width: 1.25rem
-		height: 1.25rem
+		width: 1.125rem
+		height: 1.125rem
 </style>

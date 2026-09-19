@@ -70,16 +70,21 @@ const host = $derived.by(() => {
 	border-radius: var(--shape-corner-l)
 	background: var(--card-bg)
 	color: var(--on-surface)
-	border: 1px solid var(--outline-variant)
+	border: 1px solid var(--card-border)
+	box-shadow: var(--card-shadow)
+	backdrop-filter: var(--card-backdrop-filter)
+	-webkit-backdrop-filter: var(--card-backdrop-filter)
 	text-decoration: none
 	transition:
-		border-color var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		box-shadow var(--m3e-duration-medium) var(--m3e-easing-emphasized-decelerate),
-		background-color var(--m3e-duration-medium) var(--m3e-easing-standard)
+		border-color var(--m3e-duration-short) var(--m3e-easing-standard),
+		box-shadow var(--m3e-duration-short) var(--m3e-easing-standard),
+		transform var(--m3e-duration-short) var(--m3e-easing-standard),
+		background-color var(--m3e-duration-short) var(--m3e-easing-standard)
 	&:hover
-		border-color: var(--outline)
-		box-shadow: var(--m3e-elevation-1)
-		background: unquote("color-mix(in oklab, var(--on-surface) 3%, var(--card-bg))")
+		border-color: var(--card-border-hover)
+		box-shadow: var(--card-shadow-hover)
+		transform: translateY(-2px)
+		background: var(--card-bg-hover)
 
 	&__body
 		flex: 1
